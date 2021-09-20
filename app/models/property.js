@@ -12,4 +12,6 @@ let propertySchema = new mongoose.Schema({
   updated_at: {type: Date, default: Date.now}
 })
 
+propertySchema.index({'type': 'text'})
+
 module.exports = mongoose.model('Property', propertySchema);

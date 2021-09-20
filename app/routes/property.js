@@ -3,7 +3,7 @@ var router = express.Router();
 
 const Property = require('../models/property');
 
-/* POST properties inserting. */
+/* POST properties insert. */
 router.post('/', async (req, res) => {
   const{ type, area } = req.body;
   
@@ -13,6 +13,17 @@ router.post('/', async (req, res) => {
     res.status(200).json(property);
   } catch (error) {
     res.status(500).json({error: 'Problem to create property.'});
+  }
+});
+
+/* Search by index text */
+router.get('/search', async (req, res) => {
+  const { query } = req.query;
+  try {
+    let properties = await Property.find({ $text: {$search: query}});
+    res.json(properties);
+  } catch (error) {
+    res.json({error: error}).status(500);
   }
 });
 
@@ -47,8 +58,8 @@ router.put('/:id', async (req, res) => {
       {_id: id},
       { $set: { type: type, area: area }},
       { upsert: true, 'new': true }
-    )
-    res.json(property)
+    );
+    res.json(property);
   } catch (error) {
     res.status(500).json({error: 'Problem to edit properties.'});
   }
