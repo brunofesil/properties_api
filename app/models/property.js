@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 let propertySchema = new mongoose.Schema({
-  id : String,
+  _identificador : String,
   titulo : String,
   profissional : String,
   data_Anuncio : String,
@@ -24,7 +24,9 @@ let propertySchema = new mongoose.Schema({
   logradouro : String,
   data : String,
   link: String,
-  valores_antigos: [],
+  valores_antigos: [ {
+    valor_antigo: String, data_antiga: String
+  }],
   tamamnho: String,
   acomoda: String,
   caracteristicas: String,
@@ -32,6 +34,6 @@ let propertySchema = new mongoose.Schema({
   updated_at: {type: Date, default: Date.now}
 })
 
-propertySchema.index({'type': 'text'})
+propertySchema.index({'categoria': 'text', 'bairro': 'text'})
 
 module.exports = mongoose.model('Property', propertySchema);

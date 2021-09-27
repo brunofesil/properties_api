@@ -5,7 +5,7 @@ const Property = require('../models/property');
 
 /* POST properties insert. */
 router.post('/', async (req, res) => {
-  const { _id, titulo, profissional, data_Anuncio, valor, descricao,
+  const { identificador, titulo, profissional, data_Anuncio, valor, descricao,
     categoria, tipo, condominio, iptu, area_construida,
     area_util, quartos, banheiros, vagas_garagem, detalhes_imovel,
     detalhes_condominio, cep, município, bairro, logradouro, data,
@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
 
   try {
     let property = new Property({
-      _id: _id, titulo: titulo, profissional: profissional, data_Anuncio: data_Anuncio, valor: valor,
+      _identificador: identificador, titulo: titulo, profissional: profissional, data_Anuncio: data_Anuncio, valor: valor,
       descricao: descricao, categoria: categoria, tipo: tipo, condominio: condominio, iptu: iptu, area_construida: area_construida,
       area_util: area_util, quartos: quartos, banheiros: banheiros, vagas_garagem: vagas_garagem, detalhes_imovel: detalhes_imovel,
       detalhes_condominio: detalhes_condominio, cep: cep, município: município, bairro: bairro, logradouro: logradouro, data: data,
@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
 
 /* GET property edit. */
 router.put('/:id', async (req, res) => {
-  const { _id, titulo, profissional, data_Anuncio, valor, descricao,
+  const { identificador, titulo, profissional, data_Anuncio, valor, descricao,
     categoria, tipo, condominio, iptu, area_construida,
     area_util, quartos, banheiros, vagas_garagem, detalhes_imovel,
     detalhes_condominio, cep, município, bairro, logradouro, data,
@@ -72,7 +72,7 @@ router.put('/:id', async (req, res) => {
       { _id: id },
       {
         $set: {
-          _id: _id, titulo: titulo, profissional: profissional, data_Anuncio: data_Anuncio, valor: valor,
+          _identificador: identificador, titulo: titulo, profissional: profissional, data_Anuncio: data_Anuncio, valor: valor,
           descricao: descricao, categoria: categoria, tipo: tipo, condominio: condominio, iptu: iptu, area_construida: area_construida,
           area_util: area_util, quartos: quartos, banheiros: banheiros, vagas_garagem: vagas_garagem, detalhes_imovel: detalhes_imovel,
           detalhes_condominio: detalhes_condominio, cep: cep, município: município, bairro: bairro, logradouro: logradouro, data: data,
