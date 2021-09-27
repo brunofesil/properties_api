@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
     categoria, tipo, condominio, iptu, area_construida,
     area_util, quartos, banheiros, vagas_garagem, detalhes_imovel,
     detalhes_condominio, cep, município, bairro, logradouro, data,
-    link, valores_antigos, tamamnho, acomoda, caracteristicas } = req.body;
+    link, valoresAntigos, tamamnho, acomoda, caracteristicas } = req.body;
 
   try {
     let property = new Property({
@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
       descricao: descricao, categoria: categoria, tipo: tipo, condominio: condominio, iptu: iptu, area_construida: area_construida,
       area_util: area_util, quartos: quartos, banheiros: banheiros, vagas_garagem: vagas_garagem, detalhes_imovel: detalhes_imovel,
       detalhes_condominio: detalhes_condominio, cep: cep, município: município, bairro: bairro, logradouro: logradouro, data: data,
-      link: link, valores_antigos: valores_antigos, tamamnho: tamamnho, acomoda: acomoda, caracteristicas: caracteristicas
+      link: link, valores_antigos: valoresAntigos, tamamnho: tamamnho, acomoda: acomoda, caracteristicas: caracteristicas
     });
     await property.save();
     res.status(200).json(property);
@@ -64,19 +64,19 @@ router.put('/:id', async (req, res) => {
     categoria, tipo, condominio, iptu, area_construida,
     area_util, quartos, banheiros, vagas_garagem, detalhes_imovel,
     detalhes_condominio, cep, município, bairro, logradouro, data,
-    link, valores_antigos, tamamnho, acomoda, caracteristicas } = req.body;
+    link, valoresAntigos, tamamnho, acomoda, caracteristicas } = req.body;
   const { id } = req.params;
 
   try {
     let property = await Property.findOneAndUpdate(
-      { _id: id },
+      { _identificador: identificador },
       {
         $set: {
           _identificador: identificador, titulo: titulo, profissional: profissional, data_Anuncio: data_Anuncio, valor: valor,
           descricao: descricao, categoria: categoria, tipo: tipo, condominio: condominio, iptu: iptu, area_construida: area_construida,
           area_util: area_util, quartos: quartos, banheiros: banheiros, vagas_garagem: vagas_garagem, detalhes_imovel: detalhes_imovel,
           detalhes_condominio: detalhes_condominio, cep: cep, município: município, bairro: bairro, logradouro: logradouro, data: data,
-          link: link, valores_antigos: valores_antigos, tamamnho: tamamnho, acomoda: acomoda, caracteristicas: caracteristicas
+          link: link, valoresAntigos: valoresAntigos, tamamnho: tamamnho, acomoda: acomoda, caracteristicas: caracteristicas
         }
       },
       { upsert: true, 'new': true }
