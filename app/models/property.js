@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 let propertySchema = new mongoose.Schema({
-  _identificador: String,
+  identificador: String,
   titulo : String,
   profissional : String,
   data_Anuncio : String,
@@ -27,15 +27,15 @@ let propertySchema = new mongoose.Schema({
   tamamnho: String,
   acomoda: String,
   caracteristicas: String,
-  valoresAntigos: [
-    new mongoose.Schema({
-      valorAntigo: String,
-      dataAntiga: String
-    })
+  valoresAntigos: [{
+    valorAntigo: String,
+    dataAntiga: String
+  }
   ],
   created_at: {type: Date, default: Date.now},
   updated_at: {type: Date, default: Date.now}
 });
 
+propertySchema.index({'categoria': 'text', 'bairro': 'text'});
 
 module.exports = mongoose.model('Property', propertySchema);

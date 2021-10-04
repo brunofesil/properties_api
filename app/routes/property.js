@@ -5,18 +5,19 @@ const Property = require('../models/property');
 
 /* POST properties insert. */
 router.post('/', async (req, res) => {
-  const { identificador, titulo, profissional, data_Anuncio, valor, descricao,
-    categoria, tipo, condominio, iptu, area_construida,
-    area_util, quartos, banheiros, vagas_garagem, detalhes_imovel,
-    detalhes_condominio, cep, município, bairro, logradouro, data,
+
+  const { _id, titulo, profissional, dataAnuncio, valor, descricao,
+    categoria, tipo, condominio, iptu, areaConstruida,
+    areaUtil, quartos, banheiros, vagasGaragem, detalhesImovel,
+    detalhesCondominio, cep, municipio, bairro, logradouro, data,
     link, valoresAntigos, tamamnho, acomoda, caracteristicas } = req.body;
 
   try {
-    let property = new Property({
-      _identificador: identificador, titulo: titulo, profissional: profissional, data_Anuncio: data_Anuncio, valor: valor,
-      descricao: descricao, categoria: categoria, tipo: tipo, condominio: condominio, iptu: iptu, area_construida: area_construida,
-      area_util: area_util, quartos: quartos, banheiros: banheiros, vagas_garagem: vagas_garagem, detalhes_imovel: detalhes_imovel,
-      detalhes_condominio: detalhes_condominio, cep: cep, município: município, bairro: bairro, logradouro: logradouro, data: data,
+    let property = new Property({ 
+      identificador: _id, titulo: titulo, profissional: profissional, data_Anuncio: dataAnuncio, valor: valor,
+      descricao: descricao, categoria: categoria, tipo: tipo, condominio: condominio, iptu: iptu, area_construida: areaConstruida,
+      area_util: areaUtil, quartos: quartos, banheiros: banheiros, vagas_garagem: vagasGaragem, detalhes_imovel: detalhesImovel,
+      detalhes_condominio: detalhesCondominio, cep: cep, municipio: municipio, bairro: bairro, logradouro: logradouro, data: data,
       link: link, valoresAntigos: valoresAntigos, tamamnho: tamamnho, acomoda: acomoda, caracteristicas: caracteristicas
     });
     await property.save();
@@ -60,25 +61,23 @@ router.get('/', async (req, res) => {
 
 /* GET property edit. */
 router.put('/:id', async (req, res) => {
-  const { identificador, titulo, profissional, data_Anuncio, valor, descricao,
-    categoria, tipo, condominio, iptu, area_construida,
-    area_util, quartos, banheiros, vagas_garagem, detalhes_imovel,
-    detalhes_condominio, cep, município, bairro, logradouro, data,
+
+  const { _id, titulo, profissional, dataAnuncio, valor, descricao,
+    categoria, tipo, condominio, iptu, areaConstruida,
+    areaUtil, quartos, banheiros, vagasGaragem, detalhesImovel,
+    detalhesCondominio, cep, municipio, bairro, logradouro, data,
     link, valoresAntigos, tamamnho, acomoda, caracteristicas } = req.body;
+
   const { id } = req.params;
 
   try {
-    let property = await Property.findOneAndUpdate(
-      { _identificador: identificador },
-      {
-        $set: {
-          _identificador: identificador, titulo: titulo, profissional: profissional, data_Anuncio: data_Anuncio, valor: valor,
-          descricao: descricao, categoria: categoria, tipo: tipo, condominio: condominio, iptu: iptu, area_construida: area_construida,
-          area_util: area_util, quartos: quartos, banheiros: banheiros, vagas_garagem: vagas_garagem, detalhes_imovel: detalhes_imovel,
-          detalhes_condominio: detalhes_condominio, cep: cep, município: município, bairro: bairro, logradouro: logradouro, data: data,
-          link: link, valoresAntigos: valoresAntigos, tamamnho: tamamnho, acomoda: acomoda, caracteristicas: caracteristicas
-        }
-      },
+    let property = await Property.findByIdAndUpdate( 
+      id,
+      {  $set: { identificador: _id, titulo: titulo, profissional: profissional, data_Anuncio: dataAnuncio, valor: valor,
+        descricao: descricao, categoria: categoria, tipo: tipo, condominio: condominio, iptu: iptu, area_construida: areaConstruida,
+        area_util: areaUtil, quartos: quartos, banheiros: banheiros, vagas_garagem: vagasGaragem, detalhes_imovel: detalhesImovel,
+        detalhes_condominio: detalhesCondominio, cep: cep, municipio: municipio, bairro: bairro, logradouro: logradouro, data: data,
+        link: link, valoresAntigos: valoresAntigos, tamamnho: tamamnho, acomoda: acomoda, caracteristicas: caracteristicas } },
       { upsert: true, 'new': true }
     );
     res.json(property);
