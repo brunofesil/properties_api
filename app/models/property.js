@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 let propertySchema = new mongoose.Schema({
-  identificador: String,
+  _id: {type: String, required: true},
   titulo : String,
   profissional : String,
-  data_Anuncio : String,
+  data_anuncio : String,
   valor : String,
   descricao: String,
   categoria : String,
