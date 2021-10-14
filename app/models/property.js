@@ -19,7 +19,7 @@ let propertySchema = new mongoose.Schema({
   detalhes_imovel : String,
   detalhes_condominio : String,
   cep : String,
-  município : String,
+  municipio : String,
   bairro : String,
   logradouro : String,
   data : String,
