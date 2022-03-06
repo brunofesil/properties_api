@@ -22,4 +22,5 @@ EXPOSE 3000
 
 ## Não se repete no Dockerfile
 ## Executa o comando npm build para iniciar o script que que está no package.json
-RUN yarn build
+##RUN yarn build
+CMD ["npm", "start"]
