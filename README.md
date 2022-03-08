@@ -32,6 +32,10 @@ Iniciem o servidor:
 ```
 npm start
 ```
+Subindo servidor:
+```
+nodemon start
+```
 Acesse o endereço http://localhost:3000/api-docs
 ## Ambiente Docker
 > Dockerfile
