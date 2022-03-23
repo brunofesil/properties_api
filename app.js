@@ -8,6 +8,10 @@ var propertiesRouter = require('./app/routes/property');
 
 var app = express();
 
+// const port = process.env.PORT || 3000;
+
+// app.listen(port, () => console.log(`listening on port ${port}`))
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
