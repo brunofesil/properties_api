@@ -6,4 +6,6 @@ services:
       - "3000:3000"
     volumes:
       - ./:/app
-  mongodb:
+    environment:
+      - MONGO_URL=mongodb://localhost/property
+    command: node app.js
